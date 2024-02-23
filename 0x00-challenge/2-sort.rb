@@ -1,25 +1,24 @@
-result = []
+#!/usr/bin/node
+/*
+    Print a square with the character #
+    
+    The size of the square must be the first argument 
+    of the program.
+*/
 
-ARGV.each do |arg|
-    # Convert to integer
-    i_arg = arg.to_i
 
-    # Skip if not an integer
-    next if i_arg.to_s != arg
+if (process.argv.length <= 2) {
+    process.stderr.write("Missing argument\n");
+    process.stderr.write("Usage: ./1-print_square.js <size>\n");
+    process.stderr.write("Example: ./1-print_square.js 8\n");
+    process.exit(1)
+}
 
-    # Insert result at the right position
-    is_inserted = false
-    i = 0
-    while i < result.size do
-        if result[i] <= i_arg
-            i += 1
-        else
-            result.insert(i, i_arg)
-            is_inserted = true
-            break
-        end
-    end
-    result << i_arg if !is_inserted
-end
+size = parseInt(process.argv[2], 10)  // using 10 to convert to decimal instead of hex
 
-puts result.join(' ')
+for (let i = 0 ; i < size ; i ++) {
+    for (let j = 0 ; j < size ; j ++) {
+        process.stdout.write("#");
+    }
+    process.stdout.write("\n");
+}
